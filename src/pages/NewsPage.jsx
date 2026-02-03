@@ -1,111 +1,114 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, Clock, User, Tag, Share2, Heart, MessageCircle, Bookmark, TrendingUp, ExternalLink } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { 
+  FaCalendar as Calendar,
+  FaClock as Clock,
+  FaUser as User,
+  FaTag as Tag,
+  FaHeart as Heart,
+  FaComments as MessageCircle,
+  FaChartLine as TrendingUp
+} from 'react-icons/fa'
+
+// Données des articles (peut être externalisé dans un fichier data)
+const articles = [
+  {
+    id: 1,
+    title: "Large victoire 5-1 contre Economat des Armées",
+    excerpt: "L'AS Douanes renoue avec la victoire après une série difficile, démontrant une offensive redoutable.",
+    category: 'matches',
+    date: '15 Déc 2025',
+    author: 'Rédaction AS Douanes',
+    readTime: '3 min',
+    likes: 45,
+    comments: 12,
+    image: '/images/douane11.jpg',
+    featured: true,
+    tags: ['victoire', 'offensive', 'championnat']
+  },
+  {
+    id: 2,
+    title: "Renouvellement du bureau exécutif",
+    excerpt: "Élection de M. Abakar MADJIADOUMBE à la présidence lors de l'Assemblée générale.",
+    category: 'club',
+    date: '11 Oct 2025',
+    author: 'Service Communication',
+    readTime: '4 min',
+    likes: 67,
+    comments: 18,
+    image: '/images/douane.jpg',
+    featured: true,
+    tags: ['élection', 'président', 'nouvelle ère']
+  },
+  {
+    id: 3,
+    title: "Première défaite de la saison face à Tasko",
+    excerpt: "Malgré une bonne performance, l'AS Douanes s'incline 2-1 au Stade de Diguel.",
+    category: 'matches',
+    date: '08 Déc 2025',
+    author: 'Journaliste Sportif',
+    readTime: '2 min',
+    likes: 38,
+    comments: 8,
+    image: '/images/douane2.jpg',
+    featured: false,
+    tags: ['défaite', 'analyse', 'championnat']
+  },
+  // {
+  //   id: 4,
+  //   title: "Nouveau recrutement pour renforcer la défense",
+  //   excerpt: "Le club annonce la signature d'un jeune défenseur prometteur.",
+  //   category: 'transfers',
+  //   date: '05 Nov 2025',
+  //   author: 'Direction Sportive',
+  //   readTime: '3 min',
+  //   likes: 52,
+  //   comments: 15,
+  //   image: '/images/douane13.jpg',
+  //   featured: false,
+  //   tags: ['recrutement', 'défense', 'jeune']
+  // },
+  // {
+  //   id: 5,
+  //   title: "Calendrier des 4 premières journées dévoilé",
+  //   excerpt: "Découvrez le programme du début de saison en D2.",
+  //   category: 'matches',
+  //   date: '20 Nov 2025',
+  //   author: 'Service Organisation',
+  //   readTime: '2 min',
+  //   likes: 41,
+  //   comments: 6,
+  //   image: '/images/match1.jpg',
+  //   featured: false,
+  //   tags: ['calendrier', 'programme', 'saison']
+  // },
+  // {
+  //   id: 6,
+  //   title: "Centre de formation : les nouveaux espoirs",
+  //   excerpt: "Présentation des jeunes talents du centre de formation.",
+  //   category: 'youth',
+  //   date: '18 Oct 2025',
+  //   author: 'Responsable Formation',
+  //   readTime: '4 min',
+  //   likes: 58,
+  //   comments: 22,
+  //   image: '/images/douane14.jpg',
+  //   featured: false,
+  //   tags: ['formation', 'jeunes', 'talents']
+  // }
+]
 
 const NewsPage = () => {
   const [activeCategory, setActiveCategory] = useState('all')
   
   // Catégories d'actualités
   const categories = [
-    { id: 'all', label: 'Toutes les news', count: 12 },
-    { id: 'matches', label: 'Résultats matchs', count: 6 },
-    { id: 'transfers', label: 'Transferts', count: 2 },
-    { id: 'club', label: 'Vie du club', count: 3 },
-    { id: 'youth', label: 'Jeunes talents', count: 1 }
-  ]
-
-  // Articles de presse
-  const articles = [
-    {
-      id: 1,
-      title: "Large victoire 5-1 contre Economat des Armées",
-      excerpt: "L'AS Douanes renoue avec la victoire après une série difficile, démontrant une offensive redoutable.",
-      content: "Après une défaite et un match nul, l'AS Douanes renoue avec la victoire en s'imposant largement face à l'AS Économat des Armées (5-1). L'équipe a fait preuve d'une belle offensive avec notamment un doublé d'Oumar et un triplé de Saleh...",
-      category: 'matches',
-      date: '15 Déc 2025',
-      author: 'Rédaction AS Douanes',
-      readTime: '3 min',
-      likes: 45,
-      comments: 12,
-      image: '/images/match5.jpg',
-      featured: true,
-      tags: ['victoire', 'offensive', 'championnat']
-    },
-    {
-      id: 2,
-      title: "Renouvellement du bureau exécutif",
-      excerpt: "Élection de M. Abakar MADJIADOUMBE à la présidence lors de l'Assemblée générale.",
-      content: "L'Assemblée générale élective tenue à l'amphithéâtre de l'ENA de N'Djaména a marqué un tournant pour le club. Le nouveau bureau exécutif, mené par M. Abakar MADJIADOUMBE, promet une nouvelle dynamique...",
-      category: 'club',
-      date: '11 Oct 2025',
-      author: 'Service Communication',
-      readTime: '4 min',
-      likes: 67,
-      comments: 18,
-      image: '/images/douane16.jpg',
-      featured: true,
-      tags: ['élection', 'président', 'nouvelle ère']
-    },
-    {
-      id: 3,
-      title: "Première défaite de la saison face à Tasko",
-      excerpt: "Malgré une bonne performance, l'AS Douanes s'incline 2-1 au Stade de Diguel.",
-      content: "L'AS Douanes a connu sa première défaite de la saison ce weekend face à l'AS Tasko. Malgré l'ouverture du score précoce d'Ali, l'équipe n'a pas su maintenir son avantage...",
-      category: 'matches',
-      date: '08 Déc 2025',
-      author: 'Journaliste Sportif',
-      readTime: '2 min',
-      likes: 38,
-      comments: 8,
-      image: '/images/match2.jpg',
-      featured: false,
-      tags: ['défaite', 'analyse', 'championnat']
-    },
-    {
-      id: 4,
-      title: "Nouveau recrutement pour renforcer la défense",
-      excerpt: "Le club annonce la signature d'un jeune défenseur prometteur.",
-      content: "Dans le cadre du renforcement de l'effectif, l'AS Douanes a officialisé la signature de Mahamat Karim, un défenseur central de 22 ans. Ce recrutement s'inscrit dans la politique de rajeunissement...",
-      category: 'transfers',
-      date: '05 Nov 2025',
-      author: 'Direction Sportive',
-      readTime: '3 min',
-      likes: 52,
-      comments: 15,
-      image: '/images/douane13.jpg',
-      featured: false,
-      tags: ['recrutement', 'défense', 'jeune']
-    },
-    {
-      id: 5,
-      title: "Calendrier des 4 premières journées dévoilé",
-      excerpt: "Découvrez le programme du début de saison en D2.",
-      content: "La Ligue Provinciale a dévoilé le calendrier complet de la saison 2025-2026. L'AS Douanes débutera à domicile face à l'AS Mairie le 18 janvier 2026...",
-      category: 'matches',
-      date: '20 Nov 2025',
-      author: 'Service Organisation',
-      readTime: '2 min',
-      likes: 41,
-      comments: 6,
-      image: '/images/match1.jpg',
-      featured: false,
-      tags: ['calendrier', 'programme', 'saison']
-    },
-    {
-      id: 6,
-      title: "Centre de formation : les nouveaux espoirs",
-      excerpt: "Présentation des jeunes talents du centre de formation.",
-      content: "Le centre de formation de l'AS Douanes continue de produire des talents. Cette année, quatre jeunes joueurs particulièrement prometteurs ont intégré le groupe professionnel...",
-      category: 'youth',
-      date: '18 Oct 2025',
-      author: 'Responsable Formation',
-      readTime: '4 min',
-      likes: 58,
-      comments: 22,
-      image: '/images/douane14.jpg',
-      featured: false,
-      tags: ['formation', 'jeunes', 'talents']
-    }
+    { id: 'all', label: 'Toutes les news', count: articles.length },
+    { id: 'matches', label: 'Résultats matchs', count: articles.filter(a => a.category === 'matches').length },
+    { id: 'transfers', label: 'Transferts', count: articles.filter(a => a.category === 'transfers').length },
+    { id: 'club', label: 'Vie du club', count: articles.filter(a => a.category === 'club').length },
+    { id: 'youth', label: 'Jeunes talents', count: articles.filter(a => a.category === 'youth').length }
   ]
 
   // Articles populaires
@@ -222,9 +225,11 @@ const NewsPage = () => {
                           <div className="flex items-center gap-4">
                             <button className="text-gray-500 hover:text-custom-red transition">
                               <Heart className="w-5 h-5" />
+                              <span className="text-sm ml-1">{article.likes}</span>
                             </button>
                             <button className="text-gray-500 hover:text-custom-blue transition">
-                              <Bookmark className="w-5 h-5" />
+                              <MessageCircle className="w-5 h-5" />
+                              <span className="text-sm ml-1">{article.comments}</span>
                             </button>
                           </div>
                         </div>
@@ -237,10 +242,13 @@ const NewsPage = () => {
                               </span>
                             ))}
                           </div>
-                          <button className="btn-primary inline-flex items-center gap-2">
+                          <Link 
+                            to={`/article/${article.id}`}
+                            className="btn-primary inline-flex items-center gap-2"
+                          >
                             Lire l'article complet
-                            <ExternalLink className="w-4 h-4" />
-                          </button>
+                            <span className="text-xl">→</span>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -314,9 +322,12 @@ const NewsPage = () => {
                           </button>
                         </div>
 
-                        <button className="text-custom-blue hover:text-blue-800 font-medium text-sm">
+                        <Link 
+                          to={`/article/${article.id}`}
+                          className="text-custom-blue hover:text-blue-800 font-medium text-sm"
+                        >
                           Lire plus →
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </motion.article>
@@ -334,8 +345,12 @@ const NewsPage = () => {
                 Articles populaires
               </h3>
               <div className="space-y-6">
-                {popularArticles.map((article, index) => (
-                  <div key={article.id} className="pb-6 border-b last:border-0 last:pb-0">
+                {popularArticles.map((article) => (
+                  <Link 
+                    key={article.id}
+                    to={`/article/${article.id}`}
+                    className="block pb-6 border-b last:border-0 last:pb-0 hover:bg-gray-50 -mx-6 px-6 transition"
+                  >
                     <div className="flex gap-4">
                       <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden">
                         <img
@@ -345,7 +360,7 @@ const NewsPage = () => {
                         />
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-800 mb-2 line-clamp-2">
+                        <h4 className="font-bold text-gray-800 mb-2 line-clamp-2 hover:text-custom-blue transition">
                           {article.title}
                         </h4>
                         <div className="flex items-center gap-3 text-sm text-gray-500">
@@ -357,7 +372,7 @@ const NewsPage = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

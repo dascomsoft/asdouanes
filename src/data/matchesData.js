@@ -7,8 +7,9 @@ export const matches = [
     homeTeam: "AS Douanes",
     awayTeam: "AS Mairie",
     venue: "Stade de Diguel, N'Djaména",
-    result: "À venir",
-    status: "upcoming"
+    result: "3 - 0",
+    status: "completed",
+    highlight: "Première Journée du championnat"
   },
   {
     id: 2,
@@ -18,8 +19,9 @@ export const matches = [
     homeTeam: "AS Douanes",
     awayTeam: "AS TASKO",
     venue: "Stade de Diguel, N'Djaména",
-    result: "À venir",
-    status: "upcoming"
+    result: "1 - 2",
+    status: "completed",
+    highlight: "Deuxième Journée du championnat"
   },
   {
     id: 3,
@@ -28,51 +30,56 @@ export const matches = [
     competition: "D2 - Journée 3",
     homeTeam: "AS Douanes",
     awayTeam: "Star d'Emriguebé",
-    venue: "Stade de Diguel, N'Djaména",
-    result: "À venir",
-    status: "upcoming"
+    venue: "Paris-Congo, N'Djaména",
+    result: "1 - 1",
+    status: "completed",
+    highlight: "Troisième journée du championnat"
   },
   {
     id: 4,
-    date: "Déc 2025",
+    date: "30 Jan 2026",
     time: "15:00",
-    competition: "Match Amical",
+    competition: "D2 - Journée 4",
     homeTeam: "AS Douanes",
-    awayTeam: "ASPSI",
-    venue: "Stade de Diguel",
-    result: "1 - 2",
+    awayTeam: "AS ECONOMA",
+    venue: "Stade de Diguel, N'Djaména",
+    result: "5 - 1",
     status: "completed",
-    highlight: "Match amical de préparation"
+    highlight: "Quatrième journée du championnat"
   },
   {
     id: 5,
     date: "Déc 2025",
-    time: "16:00",
-    competition: "Championnat D2",
+    time: "15:00",
+    competition: "Match Amical",
     homeTeam: "AS Douanes",
-    awayTeam: "Economat des Armées",
-    venue: "Stade de Diguel",
-    result: "5 - 1",
+    awayTeam: "AS PSI",
+    venue: "Stade de Diguel, N'Djaména",
+    result: "1 - 2",
     status: "completed",
-    highlight: "Large victoire pour renouer avec le succès"
+    highlight: "Match amical de préparation"
   },
+
   {
-    id: 6,
-    date: "Déc 2025",
+    id: 7,
+    date: "18 Déc 2025",
     time: "15:30",
     competition: "Championnat D2",
     homeTeam: "AS Douanes",
-    awayTeam: "As Tasko",
-    venue: "Stade de Diguel",
+    awayTeam: "AS Armée de l'air",
+    venue: "Stade de Diguel, N'Djaména",
     result: "1 - 2",
     status: "completed",
-    highlight: "Première défaite de la saison"
+    highlight: "Défaite de l'AS Douanes"
   }
 ]
 
 export const standings = [
-  { position: 1, team: "AS Douanes", played: 3, won: 2, drawn: 0, lost: 1, points: 6 },
-  { position: 2, team: "AS Tasko", played: 3, won: 2, drawn: 0, lost: 1, points: 6 },
-  { position: 3, team: "AS Mairie", played: 2, won: 1, drawn: 1, lost: 0, points: 4 },
-  { position: 4, team: "Economat", played: 3, won: 1, drawn: 0, lost: 2, points: 3 },
+  { position: 1, team: "AS Douanes", played: 6, won: 3, drawn: 1, lost: 2, points: 10 },
+  { position: 2, team: "AS Tasko", played: 6, won: 3, drawn: 1, lost: 2, points: 10 },
+  { position: 3, team: "AS Mairie", played: 5, won: 2, drawn: 2, lost: 1, points: 8 },
+  { position: 4, team: "AS ECONOMA", played: 5, won: 2, drawn: 1, lost: 2, points: 7 },
+  { position: 5, team: "Star d'Emriguebé", played: 5, won: 1, drawn: 2, lost: 2, points: 5 },
+  { position: 6, team: "AS PSI", played: 5, won: 1, drawn: 1, lost: 3, points: 4 },
+  { position: 7, team: "AS Armée de l'air", played: 4, won: 1, drawn: 0, lost: 3, points: 3 }
 ]

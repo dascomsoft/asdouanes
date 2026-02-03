@@ -10,6 +10,7 @@ import MatchesPage from './pages/MatchesPage'
 import GalleryPage from './pages/GalleryPage'
 import NewsPage from './pages/NewsPage'
 import ContactPage from './pages/ContactPage'
+import ArticlePage from './pages/ArticlePage'
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,8 @@ function App() {
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
+
           </Routes>
         </main>
         <Footer />
