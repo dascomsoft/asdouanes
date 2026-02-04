@@ -60,11 +60,13 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-gray-300">
                 <Phone size={18} />
-                <a href="tel:+23565150115">+235 65 15 01 15</a>
+                <a href="#">+235 66 78 79 02</a>/
+                <a href="#">+235 65 15 01 15</a>
+
               </div>
               <div className="flex items-center gap-3 text-gray-300">
                 <Mail size={18} />
-                <a href="mailto:asdouanestchad@gmail.com">asdouanestchad@gmail.com</a>
+                <a href="#">asdouanestchad@gmail.com</a>
               </div>
             </div>
           </div>
@@ -103,7 +105,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-300">
-            &copy; {currentYear} AS Douanes Football Club. Tous droits réservés.
+            &copy; {currentYear} AS Douanes . Tous droits réservés.
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-300 hover:text-white text-sm">

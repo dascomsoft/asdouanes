@@ -2,54 +2,15 @@ import { motion } from 'framer-motion'
 import { Star, Award, TrendingUp, Users } from 'lucide-react'
 
 const Sponsors = () => {
+  // Un seul partenaire : Douanes Tchadiennes
   const sponsors = [
     {
       id: 1,
       name: "Douanes Tchadiennes",
       logo: "/images/douanelogo.jpg",
-      category: "Partenaire Principal",
+      category: "Partenaire Fondateur",
       since: "2020",
-      description: "Partenaire historique et fondateur du club"
-    },
-    {
-      id: 2,
-      name: "King Pokko",
-      logo: "/images/kingpokkologo.jpeg",
-      category: "Partenaire Officiel",
-      since: "2023",
-      description: "Fournisseur officiel d'équipements sportifs"
-    },
-    {
-      id: 3,
-      name: "Ministère des Sports",
-      logo: "https://via.placeholder.com/150x100/1e3a8a/ffffff?text=MS",
-      category: "Partenaire Institutionnel",
-      since: "2021",
-      description: "Soutien au développement du sport national"
-    },
-    {
-      id: 4,
-      name: "Orange Tchad",
-      logo: "https://via.placeholder.com/150x100/FF6600/ffffff?text=Orange",
-      category: "Partenaire Télécom",
-      since: "2022",
-      description: "Connectivité et communication digitale"
-    },
-    {
-      id: 5,
-      name: "Total Energies",
-      logo: "https://via.placeholder.com/150x100/004B8D/ffffff?text=Total",
-      category: "Partenaire Énergie",
-      since: "2023",
-      description: "Mobilité et énergie pour les déplacements"
-    },
-    {
-      id: 6,
-      name: "CIMT",
-      logo: "https://via.placeholder.com/150x100/008000/ffffff?text=CIMT",
-      category: "Partenaire Transport",
-      since: "2024",
-      description: "Transport officiel de l'équipe"
+      description: "Partenaire historique et fondateur du club. La Direction Générale des Douanes et Droits Indirects du Tchad est à l'origine de la création et du soutien continu de l'AS Douanes."
     }
   ]
 
@@ -57,22 +18,22 @@ const Sponsors = () => {
     {
       icon: <Star className="w-6 h-6" />,
       title: "Visibilité Nationale",
-      description: "Exposition média et présence sur nos canaux de communication"
+      description: "Exposition média et présence sur tous nos canaux de communication"
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Accès Événements",
-      description: "Invitations aux matchs et événements exclusifs"
+      description: "Invitations aux matchs et événements exclusifs du club"
     },
     {
       icon: <Award className="w-6 h-6" />,
       title: "Image Positive",
-      description: "Association avec les valeurs sportives et sociales"
+      description: "Association avec les valeurs sportives, disciplinaires et sociales"
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
-      title: "ROI Garanti",
-      description: "Retour sur investissement mesurable et suivi personnalisé"
+      title: "Impact Social",
+      description: "Contribuer au développement du football tchadien et des jeunes talents"
     }
   ]
 
@@ -81,85 +42,84 @@ const Sponsors = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-custom-blue mb-6">
-            Nos Partenaires
+            Notre Partenaire
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Découvrez les entreprises qui nous soutiennent dans notre développement
+            Partenaire historique et fondateur de l'AS Douanes
           </p>
         </div>
 
-        {/* Partenaires principaux */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-custom-blue mb-8 text-center">
-            Partenaires Principaux
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8">
-            {sponsors.slice(0, 3).map((sponsor, index) => (
-              <motion.div
-                key={sponsor.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
-                <div className="h-40 bg-gray-100 flex items-center justify-center p-6">
+        {/* Partenaire unique */}
+        <div className="mb-16 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <div className="md:flex">
+              {/* Logo */}
+              <div className="md:w-1/3 bg-gradient-to-br from-blue-50 to-gray-50 flex items-center justify-center p-8">
+                <div className="text-center">
                   <img
-                    src={sponsor.logo}
-                    alt={sponsor.name}
-                    className="max-h-20 max-w-full object-contain"
+                    src={sponsors[0].logo}
+                    alt={sponsors[0].name}
+                    className="max-h-40 max-w-full object-contain mx-auto"
                   />
-                </div>
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h4 className="text-xl font-bold text-custom-blue">{sponsor.name}</h4>
-                      <span className="text-sm text-custom-red font-medium">{sponsor.category}</span>
-                    </div>
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                      Depuis {sponsor.since}
+                  <div className="mt-4">
+                    <span className="px-4 py-2 bg-custom-red text-white rounded-full text-sm font-medium">
+                      {sponsors[0].category}
                     </span>
                   </div>
-                  <p className="text-gray-600">{sponsor.description}</p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Partenaires officiels */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-custom-blue mb-8 text-center">
-            Partenaires Officiels
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-            {sponsors.slice(3).map((sponsor, index) => (
-              <motion.div
-                key={sponsor.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow"
-              >
-                <div className="h-24 flex items-center justify-center mb-4">
-                  <img
-                    src={sponsor.logo}
-                    alt={sponsor.name}
-                    className="max-h-16 max-w-full object-contain"
-                  />
+              </div>
+              
+              {/* Informations */}
+              <div className="md:w-2/3 p-8">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-custom-blue mb-2">
+                      {sponsors[0].name}
+                    </h3>
+                    <p className="text-gray-500">
+                      Partenaire depuis {sponsors[0].since}
+                    </p>
+                  </div>
                 </div>
-                <h4 className="font-bold text-custom-blue mb-2">{sponsor.name}</h4>
-                <p className="text-sm text-gray-600">{sponsor.category}</p>
-              </motion.div>
-            ))}
-          </div>
+                
+                <p className="text-gray-600 text-lg mb-6">
+                  {sponsors[0].description}
+                </p>
+                
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <div className="text-sm text-gray-500 mb-1">Relation</div>
+                    <div className="font-bold text-custom-blue">Fondateur</div>
+                  </div>
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <div className="text-sm text-gray-500 mb-1">Engagement</div>
+                    <div className="font-bold text-custom-blue">Long terme</div>
+                  </div>
+                </div>
+                
+                <div className="pt-6 border-t">
+                  <h4 className="font-bold text-gray-700 mb-3">Mots du Président :</h4>
+                  <blockquote className="italic text-gray-600 pl-4 border-l-4 border-custom-blue">
+                    "La Direction Générale des Douanes est fière de soutenir l'AS Douanes, 
+                    un club qui incarne les valeurs de discipline, d'intégrité et d'excellence 
+                    qui sont au cœur de notre institution."
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Avantages du partenariat */}
         <div className="bg-gradient-to-r from-custom-blue to-blue-600 rounded-2xl shadow-lg p-8 md:p-12 text-white mb-16">
           <h3 className="text-2xl font-bold mb-8 text-center">
-            Avantages du Partenariat
+            Avantages du Partenariat avec l'AS Douanes
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
@@ -184,24 +144,24 @@ const Sponsors = () => {
         {/* Devenir partenaire */}
         <div className="text-center">
           <h3 className="text-2xl font-bold text-custom-blue mb-6">
-            Devenir Partenaire
+            Rejoindre notre réseau de partenaires
           </h3>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Rejoignez notre réseau de partenaires et bénéficiez d'une visibilité unique 
-            auprès de notre communauté de supporters.
+            Vous souhaitez soutenir le développement du football tchadien et bénéficier 
+            d'une visibilité unique auprès de notre communauté ? Rejoignez-nous !
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
               className="btn-primary inline-flex items-center justify-center gap-2"
             >
-              Demander un dossier
+              Devenir partenaire
             </a>
             <a
-              href="mailto:partnership@asdouanes-td.com"
+              href="mailto:asdouanestchad@gmail.com"
               className="bg-white border-2 border-custom-blue text-custom-blue px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition inline-flex items-center justify-center gap-2"
             >
-              Nous contacter
+              Demander plus d'informations
             </a>
           </div>
         </div>

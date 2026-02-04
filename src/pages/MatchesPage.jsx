@@ -228,7 +228,7 @@ const MatchesPage = () => {
               <Trophy className="w-5 h-5" />
               Derniers matchs
             </button>
-            <button
+            {/* <button
               onClick={() => setActiveView('standings')}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
                 activeView === 'standings'
@@ -238,7 +238,7 @@ const MatchesPage = () => {
             >
               <TrendingUp className="w-5 h-5" />
               Classement
-            </button>
+            </button> */}
           </div>
 
           {/* Contenu selon la vue active */}

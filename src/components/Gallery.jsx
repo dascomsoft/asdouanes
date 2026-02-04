@@ -6,15 +6,23 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Liste des images disponibles
-  const images = Array.from({ length: 18 }, (_, i) => `/images/douane${i + 1}.jpg`)
-    .concat(Array.from({ length: 7 }, (_, i) => `/images/match${i + 1}.jpg`))
-    .concat([
-      '/images/douanelogo.jpg',
-      '/images/douanepresi.jpg',
-      '/images/douanecoach.jpg',
-      '/images/kingpokkologo.jpeg'
-    ])
+  // Liste des images disponibles - en supprimant celles spécifiées
+  const images = Array.from({ length: 18 }, (_, i) => {
+    const num = i + 1;
+    // Filtre pour supprimer les images spécifiées
+    if ([10, 12, 14, 17, 28, 29].includes(num)) {
+      return null; // Ces images seront filtrées
+    }
+    return `/images/douane${num}.jpg`;
+  })
+  .filter(Boolean) // Supprime les null
+  .concat(Array.from({ length: 7 }, (_, i) => `/images/match${i + 1}.jpg`))
+  .concat([
+    '/images/douanelogo.jpg',
+    '/images/douanepresi.jpg',
+    '/images/douanecoach.jpg',
+    '/images/kingpokkologo.jpeg'
+  ])
 
   const openLightbox = (index) => {
     setSelectedImage(images[index])
@@ -26,17 +34,15 @@ const Gallery = () => {
   }
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    )
-    setSelectedImage(images[currentIndex === 0 ? images.length - 1 : currentIndex - 1])
+    const newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1
+    setCurrentIndex(newIndex)
+    setSelectedImage(images[newIndex])
   }
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    )
-    setSelectedImage(images[currentIndex === images.length - 1 ? 0 : currentIndex + 1])
+    const newIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1
+    setCurrentIndex(newIndex)
+    setSelectedImage(images[newIndex])
   }
 
   return (

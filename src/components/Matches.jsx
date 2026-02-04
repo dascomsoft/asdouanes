@@ -149,8 +149,12 @@ const Matches = () => {
           ))}
         </div>
 
+
+
+
+
         {/* Standings Table */}
-        <div data-aos="fade-up">
+        {/* <div data-aos="fade-up">
           <h3 className="text-2xl font-bold text-custom-blue mb-8 text-center">
             Classement D2
           </h3>
@@ -197,7 +201,6 @@ const Matches = () => {
             </table>
           </div>
           
-          {/* Bouton pour voir plus */}
           <div className="text-center mt-8">
             <a 
               href="/matches" 
@@ -207,7 +210,7 @@ const Matches = () => {
               <span className="text-xl">→</span>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

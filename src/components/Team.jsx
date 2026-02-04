@@ -53,7 +53,7 @@ const Team = () => {
         </div>
 
         {/* Statistiques */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -74,10 +74,10 @@ const Team = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </div> */}
 
         {/* Joueurs en vedette */}
-        <div className="mb-16">
+        {/* <div className="mb-16">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-2xl font-bold text-custom-blue">
               Joueurs en Vedette
@@ -123,7 +123,7 @@ const Team = () => {
               </motion.div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Staff technique */}
         <div>
@@ -133,13 +133,13 @@ const Team = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
-                name: "Coach Abdoulaye",
+                name: "Coach Ousmane Bani",
                 role: "Entraîneur Principal",
                 image: "/images/douanecoach.jpg",
                 experience: "10 ans d'expérience"
               },
               {
-                name: "Adoum Ousman",
+                name: "Brahim Hassana",
                 role: "Entraîneur Adjoint",
                 image: "/images/douane15.jpg",
                 experience: "8 ans d'expérience"
@@ -181,3 +181,85 @@ const Team = () => {
 }
 
 export default Team
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

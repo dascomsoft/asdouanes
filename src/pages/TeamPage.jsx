@@ -23,8 +23,8 @@ const TeamPage = () => {
 
   // Données du staff technique
   const staff = [
-    { id: 1, name: "Coach Abdoulaye", role: "Entraîneur Principal", image: "/images/douanecoach.jpg", experience: "10 ans" },
-    { id: 2, name: "Adoum Ousman", role: "Entraîneur Adjoint", image: "/images/douane15.jpg", experience: "8 ans" },
+    { id: 1, name: "Coach OUSMANE BANI", role: "Entraîneur Principal", image: "/images/douanecoach.jpg", experience: "5 ans" },
+    { id: 2, name: "BRAHIM HASSANA", role: "Entraîneur Adjoint", image: "/images/douane15.jpg", experience: "3 ans" },
     { id: 3, name: "Mahamat Yacoub", role: "Préparateur Physique", image: "/images/douane16.jpg", experience: "6 ans" },
     { id: 4, name: "Dr. Ali Haroun", role: "Médecin du Club", image: "/images/douane17.jpg", experience: "12 ans" },
     { id: 5, name: "Oumar Brahim", role: "Kinésithérapeute", image: "/images/douane18.jpg", experience: "5 ans" },
