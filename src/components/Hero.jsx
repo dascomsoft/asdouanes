@@ -23,7 +23,7 @@ const Hero = () => {
           data-aos="fade-up"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            AS<span className="text-custom-red"> DOUANES </span>
+            AS<span className="text-custom-red"> DOUANES TCHADIENNE</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Club de football affilié à la Ligue Provinciale de N'Djaména

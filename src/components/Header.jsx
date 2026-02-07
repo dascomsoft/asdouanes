@@ -32,7 +32,7 @@ const Header = () => {
               className="h-16 w-16 object-contain"
             />
             <div>
-              <h1 className="text-2xl font-bold text-custom-blue">AS DOUANES</h1>
+              <h1 className="text-LG font-bold text-custom-blue">AS DOUANES TCHADIENNE</h1>
               <p className="text-sm text-custom-red">Football Club - N'Djaména</p>
             </div>
           </Link>

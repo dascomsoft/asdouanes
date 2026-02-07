@@ -20,6 +20,10 @@ const Contact = () => {
   const telephoneClub = "+23565150115"
   const emailClub = "asdouanestchad@gmail.com"
   
+  // Nouveaux numéros pour le secrétaire général et le directeur sportif
+  const telephoneSecretaireGeneral = "+23566241136"
+  const telephoneDirecteurSportif = "+23566052948"
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     
@@ -91,12 +95,24 @@ _Envoyé depuis asdouanes-tchad.com_`
                   <h4 className="font-bold text-lg">Téléphone Club</h4>
                   <a 
                     href={`tel:${telephoneClub.replace(/\s/g, '')}`}
-                    className="text-gray-600 hover:text-custom-blue text-lg font-medium"
+                    className="text-gray-600 hover:text-custom-blue text-lg font-medium block mb-1"
                   >
                     {telephoneClub}
                   </a>
+                  <a 
+                    href={`tel:${telephoneSecretaireGeneral.replace(/\s/g, '')}`}
+                    className="text-gray-600 hover:text-custom-blue text-lg font-medium block mb-1"
+                  >
+                    {telephoneSecretaireGeneral}
+                  </a>
+                  <a 
+                    href={`tel:${telephoneDirecteurSportif.replace(/\s/g, '')}`}
+                    className="text-gray-600 hover:text-custom-blue text-lg font-medium block"
+                  >
+                    {telephoneDirecteurSportif}
+                  </a>
                   <p className="text-sm text-gray-500 mt-1">
-                    Bureau administratif
+                    Bureau administratif et direction
                   </p>
                 </div>
               </div>
@@ -143,8 +159,36 @@ _Envoyé depuis asdouanes-tchad.com_`
               </div>
             </div>
 
+            {/* Informations complémentaires */}
+            {/* <div className="mt-12 bg-blue-50 rounded-xl p-6 border border-blue-100">
+              <h4 className="font-bold text-custom-blue text-lg mb-4">Contacts supplémentaires</h4>
+              <div className="space-y-4">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="font-medium text-gray-700">Numéro principal</div>
+                    <div className="text-gray-600">{telephoneClub}</div>
+                  </div>
+                  <span className="px-3 py-1 bg-white text-custom-blue rounded-full text-sm font-medium">Bureau</span>
+                </div>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="font-medium text-gray-700">Secrétariat</div>
+                    <div className="text-gray-600">{telephoneSecretaireGeneral}</div>
+                  </div>
+                  <span className="px-3 py-1 bg-white text-custom-blue rounded-full text-sm font-medium">Administratif</span>
+                </div>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="font-medium text-gray-700">Direction sportive</div>
+                    <div className="text-gray-600">{telephoneDirecteurSportif}</div>
+                  </div>
+                  <span className="px-3 py-1 bg-white text-custom-blue rounded-full text-sm font-medium">Sport</span>
+                </div>
+              </div>
+            </div> */}
+
             {/* Horaires */}
-            <div className="mt-12 bg-blue-50 rounded-xl p-6 border border-blue-100">
+            <div className="mt-8 bg-gray-50 rounded-xl p-6 border border-gray-100">
               <h4 className="font-bold text-custom-blue text-lg mb-4">Horaires de contact</h4>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex justify-between items-center">
@@ -239,6 +283,8 @@ _Envoyé depuis asdouanes-tchad.com_`
                   <option value="billets">Information sur les billets</option>
                   <option value="essais">Demande d'essais / Joueurs</option>
                   <option value="formation">Centre de formation</option>
+                  <option value="administratif">Question administrative</option>
+                  <option value="sportif">Question sportive</option>
                   <option value="autre">Autre demande</option>
                 </select>
               </div>
@@ -266,6 +312,7 @@ _Envoyé depuis asdouanes-tchad.com_`
                 </div>
                 <p className="text-sm text-gray-600">
                   Votre message sera envoyé directement au communicateur en chef via WhatsApp.
+                  Pour les questions administratives, vous pouvez aussi appeler le {telephoneSecretaireGeneral}
                 </p>
               </div>
 
@@ -279,9 +326,31 @@ _Envoyé depuis asdouanes-tchad.com_`
                 Envoyer le message via WhatsApp
               </motion.button>
 
-              <p className="text-sm text-gray-500 text-center">
-                Vous pouvez aussi nous contacter directement par téléphone au {telephoneClub}
-              </p>
+              <div className="text-center space-y-2">
+                <p className="text-sm text-gray-500">
+                  Vous pouvez aussi nous contacter directement par téléphone :
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <a 
+                    href={`tel:${telephoneClub.replace(/\s/g, '')}`}
+                    className="text-custom-blue hover:text-blue-700 text-sm font-medium"
+                  >
+                    Bureau : {telephoneClub}
+                  </a>
+                  <a 
+                    href={`tel:${telephoneSecretaireGeneral.replace(/\s/g, '')}`}
+                    className="text-custom-blue hover:text-blue-700 text-sm font-medium"
+                  >
+                    Secrétariat : {telephoneSecretaireGeneral}
+                  </a>
+                  <a 
+                    href={`tel:${telephoneDirecteurSportif.replace(/\s/g, '')}`}
+                    className="text-custom-blue hover:text-blue-700 text-sm font-medium"
+                  >
+                    Sport : {telephoneDirecteurSportif}
+                  </a>
+                </div>
+              </div>
             </form>
           </motion.div>
         </div>
@@ -304,6 +373,10 @@ _Envoyé depuis asdouanes-tchad.com_`
                 <MapPin className="w-20 h-20 text-custom-blue mx-auto mb-4" />
                 <h4 className="text-xl font-bold text-custom-blue">Stade de Diguel</h4>
                 <p className="text-gray-600 mt-2">9ème arrondissement, N'Djaména</p>
+                <div className="mt-4 space-y-1">
+                  <div className="text-sm text-gray-500">Réservation : {telephoneSecretaireGeneral}</div>
+                  <div className="text-sm text-gray-500">Événements sportifs : {telephoneDirecteurSportif}</div>
+                </div>
               </div>
               <div className="md:w-2/3">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -320,11 +393,14 @@ _Envoyé depuis asdouanes-tchad.com_`
                     <div className="text-sm text-gray-600">Sur rendez-vous</div>
                   </div>
                 </div>
-                <p className="mt-6 text-gray-600">
-                  Le Stade de Diguel est le siège principal de l'AS Douanes. 
-                  Tous nos matchs à domicile s'y déroulent. Pour assister à un match, 
-                  contactez-nous pour plus d'informations sur les billets.
-                </p>
+                <div className="mt-6 p-4 bg-white rounded-lg">
+                  <p className="text-gray-600">
+                    <strong>Contact stade :</strong> Pour réserver le stade ou organiser un événement, 
+                    contactez le secrétariat général au {telephoneSecretaireGeneral}.<br />
+                    <strong>Direction sportive :</strong> Pour les questions liées aux équipes, 
+                    entraînements et compétitions, contactez la direction sportive au {telephoneDirecteurSportif}.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

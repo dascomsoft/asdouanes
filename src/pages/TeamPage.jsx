@@ -1,10 +1,49 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Users, Trophy, Target, Star, Award, Shield, Zap, Heart } from 'lucide-react'
+import { Users, Trophy, Target, Star, Award, Shield, Zap, Heart, Building, UserCheck, Briefcase, Mail, Phone } from 'lucide-react'
 
 const TeamPage = () => {
-  const [activeCategory, setActiveCategory] = useState('players')
+  const [activeCategory, setActiveCategory] = useState('executive')
   
+  // Données du bureau exécutif - Classées par ordre hiérarchique
+  const executiveBoard = [
+    // Direction Générale
+    { id: 1, name: "Général OUSMANE BRAHIM DJOUMA", position: "Président d'honneur/DG AS DOUANES", image: "/images/dgasdouane.jpeg", category: "direction" },
+    { id: 2, name: "NELDJI ISMAËL KONDOL", position: "Vice-Président/DG Adjoint des DOUANES", image: "/images/dgadjoint.jpeg", category: "direction" },
+    
+    // Présidence
+    { id: 3, name: "ABAKAR MADJIADOUMBE", position: "Président", image: "/images/douanepresi.jpg", category: "direction" },
+    { id: 4, name: "IDRISS ABAKAR ABDELKERIM", position: "1er Vice Président", image: "/images/vicepasdouane.jpeg", category: "direction" },
+    { id: 5, name: "AHMAT ALHADJ ABDERAMANE", position: "2ème Vice Président", image: "/images/2vicep.jpeg", category: "direction" },
+    
+    // Secrétariat
+    { id: 6, name: "MAHAMAT MOUSSA MAHAMAT SALEH", position: "Secrétaire General", image: "/images/executive6.jpg", category: "secretariat" },
+    { id: 7, name: "DINGAM-HONDE MBEURNODJI PALBO", position: "Secrétaire Général Adjoint", image: "/images/agadj.jpeg", category: "secretariat" },
+    
+    // Trésorerie
+    { id: 8, name: "MAHMOUD ABAKAR DAOUD", position: "Trésorier Général", image: "/images/tresorg.jpeg", category: "tresorerie" },
+    { id: 9, name: "Mme ANATOU TILEM BIENVENUE", position: "Trésorière Adjointe", image: "/images/tresorieradjoint.jpeg", category: "tresorerie" },
+    
+    // Sport
+    { id: 10, name: "TOLOUBAYE NDOUBA PATRICE alias PETIT FOU", position: "Directeur Sportif", image: "/images/dsjpeg", category: "sport" },
+    { id: 11, name: "SENOUSSI HASSAN", position: "Directeur Sportif Adjoint", image: "/images/executive11.jpg", category: "sport" },
+    
+    // Communication
+    { id: 12, name: "ERICK GAMO MARANTI alias Moriero", position: "Chef des Services Communication et Publicité", image: "/images/chefc.jpeg", category: "communication" },
+    { id: 13, name: "BARKAÏ AMBOU CHIDI", position: "Chargé de Communication", image: "/images/chargeco.jpeg", category: "communication" },
+    { id: 14, name: "ROLAND DINGAMADJI", position: "Chargé de Communication rattaché au DGDDI", image: "/images/chc.jpeg", category: "communication" },
+    
+    // Relations Extérieures
+    { id: 15, name: "DEOUNOUDJI NAHARI FRÉDÉRIC", position: "Secrétaire Chargé des Relations Extérieures", image: "/images/sgrelationext.jpeg", category: "relations" },
+    
+    // Matériels & Logistique
+    { id: 16, name: "NASSOUR OUMAR BACHAR", position: "Chargé de matériels", image: "/images/executive15.jpg", category: "materiels" },
+    { id: 17, name: "NATHAN GUESNA BENJAMIN", position: "Chargé des Matériels Adjoint", image: "/images/chargem.jpeg", category: "materiels" },
+    
+    // Médical
+    { id: 18, name: "RAMADAN GRASSOU SAMUEL", position: "Soigneur (Kiné)", image: "/images/kine.jpeg", category: "medical" },
+  ]
+
   // Données des joueurs
   const players = [
     { id: 1, name: "Ali Oumar", number: 1, position: "Gardien", image: "/images/douane3.jpg", age: 24, matches: 15 },
@@ -23,11 +62,8 @@ const TeamPage = () => {
 
   // Données du staff technique
   const staff = [
-    { id: 1, name: "Coach OUSMANE BANI", role: "Entraîneur Principal", image: "/images/douanecoach.jpg", experience: "5 ans" },
-    { id: 2, name: "BRAHIM HASSANA", role: "Entraîneur Adjoint", image: "/images/douane15.jpg", experience: "3 ans" },
-    { id: 3, name: "Mahamat Yacoub", role: "Préparateur Physique", image: "/images/douane16.jpg", experience: "6 ans" },
-    { id: 4, name: "Dr. Ali Haroun", role: "Médecin du Club", image: "/images/douane17.jpg", experience: "12 ans" },
-    { id: 5, name: "Oumar Brahim", role: "Kinésithérapeute", image: "/images/douane18.jpg", experience: "5 ans" },
+    { id: 1, name: "Coach BALGUÉ BANI dit OUSTA", role: "Entraîneur Principal", image: "/images/coac.jpeg", experience: "5 ans" },
+    { id: 2, name: "BRAHIM HASSANA", role: "Entraîneur Adjoint", image: "/images/coacha.jpeg", experience: "3 ans" },
   ]
 
   // Données des jeunes
@@ -54,6 +90,23 @@ const TeamPage = () => {
     attaquants: players.filter(p => p.position === "Attaquant"),
   }
 
+  // Fonction pour grouper les membres par catégorie
+  const groupByCategory = (members) => {
+    const categories = {
+      direction: members.filter(m => m.category === "direction"),
+      secretariat: members.filter(m => m.category === "secretariat"),
+      tresorerie: members.filter(m => m.category === "tresorerie"),
+      sport: members.filter(m => m.category === "sport"),
+      communication: members.filter(m => m.category === "communication"),
+      relations: members.filter(m => m.category === "relations"),
+      materiels: members.filter(m => m.category === "materiels"),
+      medical: members.filter(m => m.category === "medical"),
+    }
+    return categories
+  }
+
+  const groupedExecutive = groupByCategory(executiveBoard)
+
   return (
     <div className="pt-8 pb-20 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-4">
@@ -68,8 +121,8 @@ const TeamPage = () => {
             Notre Équipe
           </motion.h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Découvrez les joueurs, le staff technique et les jeunes talents 
-            qui font la force de l'AS Douanes.
+            Découvrez l'ensemble de notre structure : du bureau exécutif aux joueurs, 
+            en passant par le staff technique et les jeunes talents.
           </p>
         </div>
 
@@ -101,25 +154,361 @@ const TeamPage = () => {
         {/* Navigation par catégories */}
         <section className="mb-12">
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {['players', 'staff', 'youth'].map((category) => (
+            {['executive', 'players', 'staff', 'youth'].map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
                   activeCategory === category
                     ? 'bg-custom-blue text-white shadow-lg'
                     : 'bg-white text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                {category === 'players' && 'Joueurs'}
-                {category === 'staff' && 'Staff Technique'}
-                {category === 'youth' && 'Jeunes Talents'}
+                {category === 'executive' && <><Building className="w-4 h-4" /> Bureau Exécutif</>}
+                {category === 'players' && <><Users className="w-4 h-4" /> Joueurs</>}
+                {category === 'staff' && <><Briefcase className="w-4 h-4" /> Staff Technique</>}
+                {category === 'youth' && <><Heart className="w-4 h-4" /> Jeunes Talents</>}
               </button>
             ))}
           </div>
 
           {/* Contenu selon la catégorie active */}
           <div className="mt-8">
+            {/* SECTION BUREAU EXÉCUTIF */}
+            {activeCategory === 'executive' && (
+              <>
+                {/* Section Direction */}
+                <div className="mb-16">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-custom-blue flex items-center gap-3">
+                      <Building className="w-7 h-7" />
+                      Direction Générale & Présidence
+                    </h2>
+                    <span className="px-3 py-1 bg-custom-blue text-white rounded-full text-sm">
+                      {groupedExecutive.direction.length} membres
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {groupedExecutive.direction.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 text-center"
+                      >
+                        <div className="p-6">
+                          <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-custom-blue/20">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h3 className="text-lg font-bold text-custom-blue mb-2">
+                            {member.name}
+                          </h3>
+                          <div className="flex items-center justify-center gap-2 text-custom-red font-medium mb-4">
+                            <Briefcase className="w-4 h-4" />
+                            <span className="text-center">{member.position}</span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Section Secrétariat */}
+                <div className="mb-16">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-custom-blue flex items-center gap-3">
+                      <UserCheck className="w-7 h-7" />
+                      Secrétariat
+                    </h2>
+                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                      {groupedExecutive.secretariat.length} membres
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {groupedExecutive.secretariat.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 text-center"
+                      >
+                        <div className="p-6">
+                          <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-blue-100">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h3 className="font-bold text-custom-blue mb-2">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-custom-red font-medium">
+                            {member.position}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Section Trésorerie */}
+                <div className="mb-16">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-custom-blue flex items-center gap-3">
+                      <Award className="w-7 h-7" />
+                      Trésorerie
+                    </h2>
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                      {groupedExecutive.tresorerie.length} membres
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {groupedExecutive.tresorerie.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 text-center"
+                      >
+                        <div className="p-6">
+                          <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-green-100">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h3 className="font-bold text-custom-blue mb-2">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-custom-red font-medium">
+                            {member.position}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Section Sport */}
+                <div className="mb-16">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-custom-blue flex items-center gap-3">
+                      <Zap className="w-7 h-7" />
+                      Direction Sportive
+                    </h2>
+                    <span className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">
+                      {groupedExecutive.sport.length} membres
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {groupedExecutive.sport.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 text-center"
+                      >
+                        <div className="p-6">
+                          <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-orange-100">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h3 className="font-bold text-custom-blue mb-2">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-custom-red font-medium">
+                            {member.position}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Section Communication */}
+                <div className="mb-16">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-custom-blue flex items-center gap-3">
+                      <Target className="w-7 h-7" />
+                      Communication
+                    </h2>
+                    <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
+                      {groupedExecutive.communication.length} membres
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {groupedExecutive.communication.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 text-center"
+                      >
+                        <div className="p-6">
+                          <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-purple-100">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h3 className="font-bold text-custom-blue mb-2">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-custom-red font-medium">
+                            {member.position}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Section Relations Extérieures */}
+                <div className="mb-16">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-custom-blue flex items-center gap-3">
+                      <Mail className="w-7 h-7" />
+                      Relations Extérieures
+                    </h2>
+                    <span className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
+                      {groupedExecutive.relations.length} membre{groupedExecutive.relations.length > 1 ? 's' : ''}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {groupedExecutive.relations.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 text-center"
+                      >
+                        <div className="p-6">
+                          <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-indigo-100">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h3 className="font-bold text-custom-blue mb-2">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-custom-red font-medium">
+                            {member.position}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Section Matériels */}
+                <div className="mb-16">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-custom-blue flex items-center gap-3">
+                      <Shield className="w-7 h-7" />
+                      Matériels & Logistique
+                    </h2>
+                    <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm">
+                      {groupedExecutive.materiels.length} membres
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {groupedExecutive.materiels.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 text-center"
+                      >
+                        <div className="p-6">
+                          <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-teal-100">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h3 className="font-bold text-custom-blue mb-2">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-custom-red font-medium">
+                            {member.position}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Section Médical */}
+                <div className="mb-16">
+                  <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl font-bold text-custom-blue flex items-center gap-3">
+                      <Heart className="w-7 h-7" />
+                      Service Médical
+                    </h2>
+                    <span className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">
+                      {groupedExecutive.medical.length} membre{groupedExecutive.medical.length > 1 ? 's' : ''}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {groupedExecutive.medical.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 text-center"
+                      >
+                        <div className="p-6">
+                          <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-red-100">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h3 className="font-bold text-custom-blue mb-2">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-custom-red font-medium">
+                            {member.position}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* SECTION JOUEURS */}
             {activeCategory === 'players' && (
               <>
                 {/* Navigation par position */}
@@ -152,7 +541,7 @@ const TeamPage = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="card overflow-hidden group"
+                        className="bg-white rounded-xl shadow-lg overflow-hidden group"
                       >
                         <div className="relative h-64 overflow-hidden">
                           <img
@@ -207,7 +596,7 @@ const TeamPage = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="card overflow-hidden group"
+                        className="bg-white rounded-xl shadow-lg overflow-hidden group"
                       >
                         <div className="relative h-64 overflow-hidden">
                           <img
@@ -262,7 +651,7 @@ const TeamPage = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="card overflow-hidden group"
+                        className="bg-white rounded-xl shadow-lg overflow-hidden group"
                       >
                         <div className="relative h-64 overflow-hidden">
                           <img
@@ -317,7 +706,7 @@ const TeamPage = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="card overflow-hidden group"
+                        className="bg-white rounded-xl shadow-lg overflow-hidden group"
                       >
                         <div className="relative h-64 overflow-hidden">
                           <img
@@ -360,53 +749,72 @@ const TeamPage = () => {
               </>
             )}
 
+            {/* SECTION STAFF TECHNIQUE */}
             {activeCategory === 'staff' && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {staff.map((member, index) => (
-                  <motion.div
-                    key={member.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="card text-center group"
-                  >
-                    <div className="relative h-56 overflow-hidden rounded-t-xl">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-custom-blue mb-2">
-                        {member.name}
-                      </h3>
-                      <p className="text-gray-600 mb-4">{member.role}</p>
-                      <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-4">
-                        <Award className="w-4 h-4" />
-                        <span>{member.experience} d'expérience</span>
+              <>
+                <div className="mb-12 text-center">
+                  <h2 className="text-3xl font-bold text-custom-blue mb-4">
+                    Staff Technique
+                  </h2>
+                  <p className="text-gray-600 max-w-2xl mx-auto">
+                    L'équipe d'encadrement technique qui accompagne nos joueurs au quotidien
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {staff.map((member, index) => (
+                    <motion.div
+                      key={member.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="bg-white rounded-xl shadow-lg overflow-hidden text-center"
+                    >
+                      <div className="p-6">
+                        <div className="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-4 border-custom-blue/30">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <h3 className="text-xl font-bold text-custom-blue mb-2">
+                          {member.name}
+                        </h3>
+                        <p className="text-gray-600 mb-4 font-medium">{member.role}</p>
+                        <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-4">
+                          <Award className="w-4 h-4 text-custom-red" />
+                          <span className="font-medium">{member.experience} d'expérience</span>
+                        </div>
+                        <div className="space-y-2 text-sm text-gray-600">
+                          {member.role === "Entraîneur Principal" && (
+                            <>
+                              <div className="flex items-center justify-center gap-1">
+                                <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">UEFA Pro</span>
+                                <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Tactique</span>
+                              </div>
+                              <div className="text-gray-500">Spécialiste en stratégie offensive</div>
+                            </>
+                          )}
+                          {member.role === "Entraîneur Adjoint" && (
+                            <>
+                              <div className="flex items-center justify-center gap-1">
+                                <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">Entraîneur</span>
+                                <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Développement</span>
+                              </div>
+                              <div className="text-gray-500">Spécialiste en préparation physique</div>
+                            </>
+                          )}
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        {member.role === "Entraîneur Principal" && (
-                          <>
-                            <div className="text-sm text-gray-600">Diplôme UEFA Pro</div>
-                            <div className="text-sm text-gray-600">Spécialiste tactique</div>
-                          </>
-                        )}
-                        {member.role === "Médecin du Club" && (
-                          <>
-                            <div className="text-sm text-gray-600">Spécialiste traumatologie</div>
-                            <div className="text-sm text-gray-600">Ancien médecin national</div>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </>
             )}
 
+            {/* SECTION JEUNES TALENTS */}
             {activeCategory === 'youth' && (
               <>
                 <div className="bg-gradient-to-r from-blue-50 to-red-50 rounded-2xl p-8 mb-12">
@@ -460,16 +868,16 @@ const TeamPage = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="card text-center"
+                      className="bg-white rounded-xl shadow-lg overflow-hidden text-center"
                     >
-                      <div className="h-48 overflow-hidden rounded-t-xl">
-                        <img
-                          src={player.image}
-                          alt={player.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="p-4">
+                      <div className="p-6">
+                        <div className="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-4 border-custom-blue/20">
+                          <img
+                            src={player.image}
+                            alt={player.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                         <h3 className="font-bold text-lg text-custom-blue mb-1">
                           {player.name}
                         </h3>
@@ -490,7 +898,7 @@ const TeamPage = () => {
                 </div>
 
                 <div className="mt-12 text-center">
-                  <button className="btn-primary inline-flex items-center gap-2">
+                  <button className="bg-custom-blue text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center gap-2">
                     <Users className="w-5 h-5" />
                     Rejoindre notre centre de formation
                   </button>
@@ -502,9 +910,9 @@ const TeamPage = () => {
 
         {/* Section Philosophie de l'équipe */}
         <section className="mt-20">
-          <div className="bg-custom-blue text-white rounded-2xl p-8 md:p-12">
+          <div className="bg-gradient-to-r from-custom-blue to-blue-800 text-white rounded-2xl p-8 md:p-12">
             <h2 className="text-3xl font-bold mb-8 text-center">
-              Philosophie de l'Équipe
+              Notre Philosophie
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
