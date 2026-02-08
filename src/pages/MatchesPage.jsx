@@ -61,25 +61,25 @@ const MatchesPage = () => {
     { 
       label: "Buts marqués", 
       value: stats.goalsFor.toString(), 
-      change: "+0", 
+      change: "+3", 
       icon: <Star className="w-5 h-5" /> 
     },
     { 
       label: "Buts encaissés", 
       value: stats.goalsAgainst.toString(), 
-      change: "+0", 
+      change: "+1", 
       icon: <TrendingUp className="w-5 h-5" /> 
     },
     { 
       label: "Victoires", 
       value: stats.wins.toString(), 
-      change: "+0", 
+      change: "+1", 
       icon: <Trophy className="w-5 h-5" /> 
     },
     { 
       label: "Forme actuelle", 
       value: `${stats.winPercentage}%`, 
-      change: "+0%", 
+      change: "+25%", 
       icon: <Award className="w-5 h-5" /> 
     }
   ]
@@ -167,16 +167,66 @@ const MatchesPage = () => {
   return (
     <div className="pt-8 pb-20 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-4">
-        {/* Hero Section */}
+        {/* Hero Section avec dernier résultat */}
         <div className="text-center mb-16">
-          <motion.h1 
+          <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="inline-block mb-6"
+          >
+            <div className="bg-gradient-to-r from-green-100 to-blue-100 px-6 py-2 rounded-full mb-4">
+              <span className="font-bold text-green-800">🎉 DERNIER RÉSULTAT</span>
+            </div>
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold text-custom-blue mb-6"
           >
             Calendrier & Résultats
           </motion.h1>
+          
+          {/* Dernier résultat en vedette */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-6 mb-8 border-2 border-green-200"
+          >
+            <div className="text-center mb-4">
+              <div className="text-sm text-gray-500 mb-2">7 Février 2026 • Championnat D2</div>
+              <div className="text-xl font-bold text-custom-blue mb-6">Derby de N'Djaména</div>
+              
+              <div className="flex items-center justify-between mb-6">
+                <div className="text-center flex-1">
+                  <div className="font-bold text-2xl mb-2 text-custom-blue">AS Douanes</div>
+                  <div className="text-5xl font-bold text-green-600">3</div>
+                  <div className="mt-2 text-sm text-gray-600">Victoire à domicile</div>
+                </div>
+                
+                <div className="text-3xl font-bold text-gray-400 mx-4">VS</div>
+                
+                <div className="text-center flex-1">
+                  <div className="font-bold text-2xl mb-2 text-gray-700">AS Police</div>
+                  <div className="text-5xl font-bold text-gray-700">1</div>
+                  <div className="mt-2 text-sm text-gray-600">Défaite à l'extérieur</div>
+                </div>
+              </div>
+              
+              <div className="p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl">
+                <h4 className="font-bold text-gray-800 mb-2">📝 Résumé du match :</h4>
+                <p className="text-gray-700">
+                  <strong>Mi-temps : 1-1</strong> - Les Douaniers ouvrent le score à la 25e minute mais l'AS Police égalise avant la pause.
+                  <br/>
+                  <strong>Seconde mi-temps :</strong> L'AS Douanes montre sa supériorité en inscrivant deux buts (65e et 85e minutes) pour s'imposer 3-1.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+          
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Suivez tous les matchs de l'AS Douanes en championnat D2 et autres compétitions
           </p>
@@ -228,17 +278,6 @@ const MatchesPage = () => {
               <Trophy className="w-5 h-5" />
               Derniers matchs
             </button>
-            {/* <button
-              onClick={() => setActiveView('standings')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
-                activeView === 'standings'
-                  ? 'bg-custom-blue text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              <TrendingUp className="w-5 h-5" />
-              Classement
-            </button> */}
           </div>
 
           {/* Contenu selon la vue active */}
@@ -256,9 +295,21 @@ const MatchesPage = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                      className={`bg-white rounded-2xl shadow-lg overflow-hidden ${
+                        match.id === 1 ? 'border-2 border-green-200' : ''
+                      }`}
                     >
                       <div className="p-6">
+                        {/* Badge spécial pour la dernière victoire */}
+                        {match.id === 1 && (
+                          <div className="mb-4">
+                            {/* <span className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-green-50 text-green-800 px-4 py-2 rounded-full font-bold">
+                              <Trophy className="w-4 h-4" />
+                              DERNIÈRE VICTOIRE
+                            </span> */}
+                          </div>
+                        )}
+                        
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
                           <div>
                             <div className="flex items-center gap-3 mb-2">
@@ -321,6 +372,57 @@ const MatchesPage = () => {
                           </div>
                         </div>
 
+
+
+
+                        {/* Résumé détaillé spécial pour AS Police */}
+                        {/* {match.id === 1 && (
+                          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl border border-blue-100">
+                            <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                              <span className="text-green-600">🏆</span>
+                              Résumé détaillé du derby
+                            </h4>
+                            <div className="space-y-3">
+                              <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-800 font-bold">
+                                  1
+                                </div>
+                                <div>
+                                  <div className="font-semibold text-gray-800">Première mi-temps (25')</div>
+                                  <div className="text-gray-600">Ouverture du score par l'AS Douanes après une belle action collective</div>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-800 font-bold">
+                                  2
+                                </div>
+                                <div>
+                                  <div className="font-semibold text-gray-800">Égalisation (35')</div>
+                                  <div className="text-gray-600">AS Police profite d'une erreur défensive pour égaliser juste avant la pause</div>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-800 font-bold">
+                                  3
+                                </div>
+                                <div>
+                                  <div className="font-semibold text-gray-800">Seconde mi-temps (65')</div>
+                                  <div className="text-gray-600">Les Douaniers reprennent l'avantage sur un coup franc bien exécuté</div>
+                                </div>
+                              </div>
+                              <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-800 font-bold">
+                                  4
+                                </div>
+                                <div>
+                                  <div className="font-semibold text-gray-800">But du break (85')</div>
+                                  <div className="text-gray-600">Troisième but douanier sur contre-attaque rapide pour sceller la victoire</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )} */}
+
                         <div className="flex gap-4">
                           <button className="flex-1 btn-secondary">
                             Voir les stats
@@ -332,103 +434,6 @@ const MatchesPage = () => {
                       </div>
                     </motion.div>
                   ))}
-                </div>
-              </div>
-            )}
-
-            {activeView === 'standings' && (
-              <div className="space-y-8">
-                <h2 className="text-2xl font-bold text-custom-blue mb-6">
-                  Classement D2 - Ligue Provinciale N'Djaména
-                </h2>
-                
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="bg-custom-blue text-white">
-                        <tr>
-                          <th className="p-4 text-left">#</th>
-                          <th className="p-4 text-left">Équipe</th>
-                          <th className="p-4 text-left">J</th>
-                          <th className="p-4 text-left">G</th>
-                          <th className="p-4 text-left">N</th>
-                          <th className="p-4 text-left">P</th>
-                          <th className="p-4 text-left">BP</th>
-                          <th className="p-4 text-left">BC</th>
-                          <th className="p-4 text-left">+/-</th>
-                          <th className="p-4 text-left">PTS</th>
-                          <th className="p-4 text-left">Forme</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {realStandings.map((team, index) => (
-                          <tr 
-                            key={team.team} 
-                            className={`border-b hover:bg-gray-50 transition-colors ${
-                              team.team === "AS Douanes" ? 'bg-blue-50 font-semibold' : ''
-                            }`}
-                          >
-                            <td className="p-4">
-                              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                                team.position === 1 ? 'bg-yellow-100 text-yellow-800' :
-                                team.position === 2 ? 'bg-gray-100 text-gray-800' :
-                                team.position === 3 ? 'bg-orange-100 text-orange-800' :
-                                'bg-gray-50 text-gray-600'
-                              }`}>
-                                {team.position}
-                              </div>
-                            </td>
-                            <td className="p-4 font-medium">{team.team}</td>
-                            <td className="p-4">{team.played}</td>
-                            <td className="p-4">{team.won}</td>
-                            <td className="p-4">{team.drawn}</td>
-                            <td className="p-4">{team.lost}</td>
-                            <td className="p-4 font-medium">{team.goalsFor}</td>
-                            <td className="p-4">{team.goalsAgainst}</td>
-                            <td className="p-4 font-bold">
-                              {team.goalsFor - team.goalsAgainst > 0 ? '+' : ''}
-                              {team.goalsFor - team.goalsAgainst}
-                            </td>
-                            <td className="p-4 font-bold text-lg">{team.points}</td>
-                            <td className="p-4">
-                              <div className="flex gap-1">
-                                {team.form.map((result, idx) => (
-                                  <div 
-                                    key={idx}
-                                    className={`w-6 h-6 rounded text-xs flex items-center justify-center ${
-                                      result === 'W' ? 'bg-green-100 text-green-800' :
-                                      result === 'D' ? 'bg-yellow-100 text-yellow-800' :
-                                      'bg-red-100 text-red-800'
-                                    }`}
-                                  >
-                                    {result}
-                                  </div>
-                                ))}
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Légende */}
-                  <div className="p-6 border-t">
-                    <div className="flex flex-wrap gap-6 text-sm">
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 bg-yellow-100 rounded"></div>
-                        <span>1ère place</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 bg-gray-100 rounded"></div>
-                        <span>2ème place</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 bg-orange-100 rounded"></div>
-                        <span>3ème place</span>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             )}
@@ -449,15 +454,33 @@ const MatchesPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 transition-colors border-b last:border-0"
+                  className={`flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 transition-colors border-b last:border-0 ${
+                    match.id === 1 ? 'bg-green-50 hover:bg-green-100' : ''
+                  }`}
                 >
                   <div className="flex items-center gap-4">
                     <div className="text-center">
                       <div className="text-sm text-gray-500">Date</div>
-                      <div className="font-bold text-custom-blue">{match.date}</div>
+                      <div className={`font-bold ${
+                        match.id === 1 ? 'text-green-700' : 'text-custom-blue'
+                      }`}>
+                        {match.date}
+                      </div>
                     </div>
                     <div>
-                      <div className="font-medium">{match.homeTeam} vs {match.awayTeam}</div>
+                      <div className="font-medium">
+                        {match.homeTeam === 'AS Douanes' ? (
+                          <span className="text-custom-blue font-bold">AS Douanes</span>
+                        ) : (
+                          match.homeTeam
+                        )} 
+                        vs 
+                        {match.awayTeam === 'AS Douanes' ? (
+                          <span className="text-custom-blue font-bold"> AS Douanes</span>
+                        ) : (
+                          ` ${match.awayTeam}`
+                        )}
+                      </div>
                       <div className="text-sm text-gray-600">{match.competition}</div>
                     </div>
                   </div>
@@ -465,10 +488,14 @@ const MatchesPage = () => {
                     {match.result ? (
                       <div className={`font-bold text-lg ${
                         match.result.split(' - ')[0] > match.result.split(' - ')[1]
-                          ? 'text-green-600'
+                          ? match.homeTeam === 'AS Douanes' || match.awayTeam === 'AS Douanes'
+                            ? 'text-green-600'
+                            : 'text-gray-600'
                           : match.result.split(' - ')[0] === match.result.split(' - ')[1]
                           ? 'text-yellow-600'
-                          : 'text-red-600'
+                          : match.homeTeam === 'AS Douanes' || match.awayTeam === 'AS Douanes'
+                            ? 'text-red-600'
+                            : 'text-gray-600'
                       }`}>
                         {match.result}
                       </div>

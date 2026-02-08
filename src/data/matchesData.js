@@ -71,7 +71,18 @@ export const matches = [
     result: "1 - 2",
     status: "completed",
     highlight: "Défaite de l'AS Douanes"
-  }
+  },
+     { id: 8,
+    date: '07 Fév 2026',
+    homeTeam: 'AS Douanes',
+    awayTeam: 'AS Police',
+    result: '3 - 1',
+    competition: 'Championnat D2 - Ligue Provinciale',
+    time: '15h00',
+    venue: 'Stade Municipal, N\'Djaména',
+    status: 'completed',
+    highlight: 'Victoire importante dans le derby ! Les Douaniers s\'imposent 3-1 après avoir mené 1-0, concédé l\'égalisation, puis marqué deux buts en seconde mi-temps. Belle démonstration de caractère.'
+  },
 ]
 
 export const standings = [

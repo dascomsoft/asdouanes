@@ -33,7 +33,7 @@ const Hero = () => {
           
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <motion.a
-              href="#contact"
+              href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="btn-secondary inline-flex items-center"
@@ -58,7 +58,7 @@ const Hero = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="flex flex-wrap justify-center gap-8 mt-12"
         >
-          <a href="https://www.facebook.com/profile.php?id=61567120363658" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-custom-red transition">
+          {/* <a href="https://www.facebook.com/profile.php?id=61567120363658" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-custom-red transition">
             <Facebook size={20} />
             <span>Facebook</span>
           </a>
@@ -69,7 +69,7 @@ const Hero = () => {
           <a href="mailto:asdouanestchad@gmail.com" className="flex items-center gap-2 hover:text-custom-red transition">
             <Mail size={20} />
             <span>asdouanestchad@gmail.com</span>
-          </a>
+          </a> */}
         </motion.div>
 
         {/* Scroll Indicator */}

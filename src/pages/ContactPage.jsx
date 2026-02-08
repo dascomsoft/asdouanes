@@ -356,6 +356,11 @@ _Envoyé depuis asdouanes-tchad.com_`
         </div>
 
         {/* Localisation */}
+
+
+
+
+{/* 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -404,7 +409,12 @@ _Envoyé depuis asdouanes-tchad.com_`
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
+
+
+
+
+
       </div>
     </section>
   )
